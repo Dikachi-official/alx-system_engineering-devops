@@ -12,11 +12,12 @@ is a simple web infrastructure design that consist of:
 1 domain name foobar.com configured with a www record that points to your server IP 8.8.8.8
 Distributed web infrastructure
 is a simple Distributed web infrastructure that consist of:
-
+<p>
 2 servers
 1 web server (Nginx)
 1 application server
 1 database (MySQL)
+</p>  
 ====================================================================================
 
 AUTHORS
