@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
-# script to output where each subdomain points to
-runDig () {
-    subarg=$1
-    urlarg=$2
+# shellcheck disable=SC2086
+# Bash script that will display information about subdomains.
 
-    dig "$subarg.$urlarg" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$subarg" 'BEGIN { FS = " " } ; { print "The subdomain " s " is a " $4 " record and points to " $5 }'
+excute () {
+        RECORD_TYPE=$(dig "$2"."$1" | awk 'BEGIN{OFS=" ";} /^'$2'/{print $4}')
+        DESTINATION=$(dig "$2"."$1" | awk 'BEGIN{OFS=" ";} /^'$2'/{print $5}')
+        echo "The subdomain $2 is a $RECORD_TYPE record and points to $DESTINATION"
 }
-
-allSubs=( "www" "lb-01" "web-01" "web-02" )
-
-if [ $# -eq 1 ]; then
-    url="$1"
-    for s in "${allSubs[@]}"
-    do
-	runDig "$s" "$url"
-    done
-elif [ $# -eq 2 ]; then
-    url="$1"
-    sub="$2"
-    runDig "$sub" "$url"
-fi
+domain=$1
+subdomain=$2
+sub=( www lb-01 web-01 web-02 )
+check () {
+    if [[ $subdomain == "" ]]
+    then
+        for x in "${sub[@]}"
+        do
+            excute "$domain" "$x"
+        done
+    else
+        excute "$domain" "$subdomain"
+    fi
+    return 0
+}
+check
