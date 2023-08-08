@@ -2,7 +2,7 @@
 <h3>Description</h3>
 This project in the System engineering & DevOps series is about:
 
-<strong>How to read API documentation to find the endpoints you're looking for:</strong>
+<h3>How to read API documentation to find the endpoints you're looking for</h3>
 <li>How to use an API with pagination</li>
 <li>How to parse JSON results from an API</li>
 <li>How to make a recursive API call</li>
