@@ -1,4 +1,4 @@
-<h1>Web infrastructure design</h1>
+<h2>Web infrastructure design</h2>
 ====================================================================================
 
 Simple web stack
